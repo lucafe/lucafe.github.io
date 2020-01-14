@@ -1,0 +1,259 @@
+ 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<TITLE>  LF SOFTWARE  </TITLE> 
+<LINK href="LF_1st_page_material/1col.css" 
+rel="stylesheet" type="text/css"> <LINK href="LF_1st_page_material/navlist.css" 
+rel="stylesheet" type="text/css"> 
+<META name="GENERATOR" content="MSHTML 11.00.9600.18212"></HEAD> 
+<BODY>
+<DIV class="container">
+
+
+<!-- HEADER -->
+<DIV class="header">
+<DIV >	<span style="font-variant: small-caps"> <br> <font size="3">		Luca Fenzi </font> <BR><font size="2">PhD Student<br></font></span></DIV>
+</DIV>
+<!-- HEADER -->
+
+<!-- NAVIGATION LIST -->
+<DIV class="topnav"> <DIV align="center">
+</br> 
+    <a  href="index.html">HOME</A>
+   <a   href="about_me.htm" >ABOUT ME</a>
+     <a  href="Research.htm"  >RESEARCH</a>
+	    <a class="active"  href="Software.htm">SOFTWAREs</a>
+		   <a  href="Extras.htm">LINKs</a>
+  </DIV> </DIV>
+<!-- NAVIGATION LIST -->
+
+<!-- SUBNAVIGATION LIST -->
+<DIV class="subtopnav"> <DIV align="center">
+</br>     <a  href="#UDDAE"> Stabilization of Uncertain Time-Delay Systems</A>
+   <a     href="#PCE" >Polynomial (Chaos) Approximation</a>
+  </DIV> </DIV>
+  
+ <DIV class="subtopnav"><DIV align="center">
+</br>      <a   href="#FloMu"> Stability and Stabilization of Periodic Time-Delay Systems</A>
+  </DIV> </DIV> 
+  
+<!-- SUB NAVIGATION LIST -->
+
+
+<BR>
+<!-- CONTENT -->
+<DIV class="content"> <DIV align="left">
+
+<!-- Robust Stability Optimization in Probabilistic Framework -->
+<h3 id="UDDAE"> Stability Optimization of Uncertain Time Delay Systems<br> MATLAB package</h3>
+
+<ul style="list-style-type:none">
+	<li> <B> Author </B></li> 
+	<p> The software was written by <A HREF="https://lucafe.github.io/index.html"> Fenzi Luca </A>
+ under supervision of <A HREF="https://people.cs.kuleuven.be/~wim.michiels/"> Wim Michiels</A>.  </p>
+ <BR>
+ 
+ <li><B>Corresponding articles</B> </li>
+ <p> L. Fenzi and W. Michiels, <A HREF="https://www.sciencedirect.com/science/article/pii/S0024379517301829">Robust stability optimization for linear delay systems in a probabilistic framework</A>, Linear Algebra and its Application, 526:1-26 (2017).<br>
+<font size="2"><A HREF="http://www.cs.kuleuven.be/publicaties/rapporten/TW/2016/"><i> (Preprint.)</i></A>L. Fenzi and W. Michiels, Robust stability optimization for linear delay systems in a probabilistic framework,
+ Internal report TW 671, Department of  Computer Science, K.U.Leuven, August 2016.</p></font>
+ 
+ <li><B>Download</B> </li>
+  <p><A HREF="software/UDDAE_Optimization.zip"> Download the software</a>. 
+All the codes are commented and there are several examples, including a model of an experimental heat-exchanger.<BR>
+<font size="2"><i>The software is released under the <A HREF="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3.0 license</A>. </i></font></p>
+ 
+ <li>
+<i> All scientific publications, for which the Matlab package  has been used,
+ must mention the use of the tutorial, and must refer to the above publications. </i></li><br>
+
+	<li> <B>Description of the method</B></li>
+	<p>The approach is concerned with an eigenvalue based stabilization method for 
+	uncertain linear time-delay systems by static of dynamic feedback, 
+	where the closed-loop systems is described by a delay-differential algebraic equation 
+	(DDAE) of retarded type. Both system matrices and delays can be subject to uncertainty,
+	  modeled by a random vector. The dependence of the characteristic matrix on the 
+	  uncertain parameters can be nonlinear. </p>
+
+<p>	
+Unlike the stability optimization methods for deterministic problems, 
+which minimizes the spectral abscissa, this approach shows better robust properties based on a more realistic model, 
+where the uncertainty is taken into account by minimizing an objective function,
+ consisting of the mean of the spectral abscissa with a variance penalty.
+</p>
+
+<p> The minimization of the objective function requires the usage of the software 
+<A HREF="http://www.cs.nyu.edu/overton/software/hanso/"> HANSO (Hybrid Algorithm for Non Smooth Optimization)</A>.    
+The objective function and its gradient are numerically evaluated by computing integrals using a Quasi Monte Carlo method. For fixed parameter values the spectral abscissa is computed with the Infinitesimal Generator Approch, 
+this approximation is corrected by applying Newton's method to the characteristic equation. 
+</p>
+
+
+
+
+ <li>  <B>Acknowledgements </B> </li>
+ <p> Special thanks goes to <A HREF="https://scholar.google.ca/citations?user=PF7KAGoAAAAJ&hl=en"> Dan Pilbauer</A> for his careful tests and constructive comments.
+ <p><font size="2"> <B>Funding: </B> 
+This work was supported by the project C14/17/072 of the KU Leuven Research Council, by the project G0A5317N of the Research Foundation-Flanders (FWO - Vlaanderen), and by the project UCoCoS, funded by the European Unions Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie Grant Agreement No 675080.
+</font> </p>
+
+<BR>
+</ul>
+<BR>
+
+
+<!-- Polynomial Chaos Approximation of maximum eigenvalue functions -->
+<h3 id="PCE"> Polynomial (chaos) approximation of maximum eigenvalue functions <br> MATLAB tutorial</h3>
+<ul style="list-style-type:none">
+	<li> <B> Authors </B></li> 
+	<p> The software was written by <A HREF="https://lucafe.github.io/index.html"> Fenzi Luca </A>
+ under supervision of <A HREF="https://people.cs.kuleuven.be/~wim.michiels/"> Wim Michiels</A>.  </p>
+ <BR>
+ 
+ <li><B>Corresponding articles</B> </li>
+ <p>L. Fenzi and W. Michiels.		<A HREF="https://doi.org/10.1007/s11075-018-00648-9"> 
+		Polynomial (chaos) approximation of maximum eigenvalue functions: efficiency and limitations</A>, Numerical Algorithms, 82:1143–1169 (2019).<br>
+	<font size="2"><i><A HREF="https://arxiv.org/abs/1804.03881"> (Preprint)</A> </i>L. Fenzi and W. Michiels.		
+		Polynomial (chaos) approximation of maximum eigenvalue functions: efficiency and limitations, arXiv: 1804.03881 (2018).<br></font></li><br></p>
+ 
+ <li><B>Download</B> </li>
+  <p> <A HREF="software/PCA_SA_Tutorial.pdf"> Download the tutorial</A>. <br>
+  <font size="2">This tutorial is also availble at <A HREF="http://www.cs.kuleuven.be/publicaties/rapporten/tw/TW688.abs.html"> TW internal reports</A> KU Leuven.<br>
+</font>
+  <A HREF="software/PCA_SA.m"> Download the Matlab script</A>. <br>
+    <font size="2">This script generates the latex tutorial by the Matlab code <A HREF="https://nl.mathworks.com/help/matlab/ref/publish.html"> publish</A>.
+</font> </A> <br>
+</p>
+ 
+ <li>
+<i> All scientific publications, for which the tutorial  has been used,
+ must mention the use of the tutorial, and must refer to the above publications. </i></li><br>
+
+	<li> <B>Abstract of the Tutorial</B></li>
+	<p>This tutorial reviews the numerical experiments contained in the article,
+	  <i><A HREF="https://doi.org/10.1007/s11075-018-00648-9"> Fenzi & Michiels (2019) "Polynomial (chaos) approximation of maximum eigenvalue functions: efficiency and limitations"</a></i>,  
+	  providing a template that can be modified for explorations of your own. </p>
+
+<p>	
+The tutorial explores the polynomial approximation of smooth, 
+non-differentiable and not even Lipschitz continuous benchmark functions 
+in the univariate and bivariate cases. The analyzed functions arise from parameter 
+eigenvalue problems; more in details, they are the real part of the rightmost eigenvalue 
+(the so-called spectral abscissa).
+</p>
+
+<p> The polynomial approximations are obtained by 
+Galerkin and collocation approaches. In the Galerkin approach, 
+the numerical approximation of the coefficients in the univariate case 
+is achieved by extended (or composite) Trapezoidal and Simpson's rules or by Gauss 
+and Clenshaw-Curtis quadrature rules. 
+For the bivariate case, the coefficients are approximated by tensorial and non-tensorial 
+Clenshaw-Curtis cubature rules, based on tensor-product Chebyshev grid and Padua points, 
+respectively. 
+The collocation approach interpolates the function on Chebyshev points 
+in the univariate case, while for the bivariate case the interpolant nodes are
+ given by tensor-product Chebyshev grid and Padua points.
+</p>
+
+
+
+
+ <li> <p><font size="2"> <B>Funding: </B> 
+This work was supported by the project C14/17/072 of the KU Leuven Research Council, by the project G0A5317N of the Research Foundation-Flanders (FWO - Vlaanderen), and by the project UCoCoS, funded by the European Unions Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie Grant Agreement No 675080.
+</font> </p></li>
+
+<BR>
+</ul>
+<BR>
+
+
+<!-- Stability and Stabilization of periodic time delay systems -->
+<h3 id="FloMu"> Stability and Stabilization of Periodic Time-Delay Systems <br> MATLAB package</h3>
+<ul style="list-style-type:none">
+	<li> <B> Authors </B></li> 
+	<p> The software was written by <A HREF="https://lucafe.github.io/index.html"> Fenzi Luca </A>
+ under supervision of <A HREF="https://people.cs.kuleuven.be/~wim.michiels/"> Wim Michiels</A>.  </p>
+ <BR>
+ 
+ <li><B>Corresponding articles</B> </li>
+ <p> W. Michiels and L. Fenzi.		<A HREF="https://arxiv.org/abs/1908.10280"> 
+		Spectrum-based stability analysis and stabilization of a class of time-periodic time delay systems</A>, 
+		arXiv: 1804.03881 (2019).<br></p>
+ 
+ <li><B>Download</B> </li>
+  <p> <A HREF="software/StabilityStabilizationPTDS.zip"> Download the software</A>. <br>
+  All the codes are commented and there are several examples.<BR>
+<font size="2"><i>The software is released under the <A HREF="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3.0 license</A>. </i></font></p>
+</p>
+ 
+  <li>
+<i> All scientific publications, for which the Matlab package  has been used,
+ must mention the use of the tutorial, and must refer to the above publications. </i></li><br>
+
+ 
+ <li> <B>Description of the software</B></li>
+	<p>The software deals with spectrum-based stability assessment and stabilization methods for 
+	periodic linear time-delay systems, where the delays and the period of the system matrices are commensurate. 
+The software relies on the dual interpretation of the Floquet multipliers,
+ which can be characterized as non-zero eigenvalues either of  the monodromy operor
+or of a finite-dimensional nonlinear eigenvalue problem, whose solution is obtained by solving an initial value problem.
+	 </p>
+
+<p>	
+The stability assessment of a periodic time-delay system is determined by the largest in modulus Floquet multiplier. 
+This Floquet multiplier is first approximated by a spectral collocation of the monodromy operator eigenproblem. 
+Hence,  its precision is refined up to machine precision by Broyden's method, 
+considering the finite-dimensional nonlinear eigenvalue problem. 
+</p>
+
+<p> The derivate of the Floquet multiplier with respect to system parameter can also be computed.
+The derivative computation is used in the stabilization method, 
+which designs targeted parameters of the time-delay systems in order to minimize the modulus of the largest Floquet multipliers. 
+The stabilization method requires the usage of the software 
+<A HREF="http://www.cs.nyu.edu/overton/software/hanso/"> HANSO (Hybrid Algorithm for Non Smooth Optimization)</A>. 
+</p>
+
+<p> The package presents additional routines for the stability and stabilization of large-scale periodic time-delay systems. 
+These large-scale routines solves with Arnoldi's method the discretized aigenvalue problem arising from the monodromy operator. 
+Moreover, they consider a dual time-systems for the Floquet multiplier derivative computation. 
+</p>
+
+ <li> <p><font size="2"> <B>Funding: </B> 
+This work was supported by the project C14/17/072 of the KU Leuven Research Council, by the project G0A5317N of the Research Foundation-Flanders (FWO - Vlaanderen), and by the project UCoCoS, funded by the European Unions Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie Grant Agreement No 675080.
+</font> </p></li>
+
+<BR>
+</ul>
+
+</P></DIV><!-- end .content --> </DIV><!-- end .container --> 
+
+
+
+
+<!-- FOOTER -->
+<DIV class="content"><DIV class="footer"><DIV align="central">
+<P>
+<center>
+
+<table style="width:100%">
+<td>
+   <p class="small"><font size="3", color=#282828> 		Luca Fenzi 		</font> <br> <font size="2", color=#282828> 						PhD Student 		</p></font> 
+</td>
+    <td> 	<font style="oblique", font size="1", color=#282828>  <p class="italic">  
+			e-mail: <a href="mailto:luca.fenzi@kuleuven.be" > luca.fenzi@kuleuven.be </a> <br>
+			Phone: <a href="tel:+3216376477" >+32 16 37 64 77 </a> <br>
+			Skype for Business:<a href="sip:luca.fenzi@kuleuven.be"> Luca Fenzi </a> 
+		</p>
+ 		</font></td>
+    <td>
+	<p class="italic"> <font style="oblique", font size="1", color=#282828> 
+KU Leuven, Department of Computer Science,  NUMA Section <BR> 
+   Celestijnenlaan 200A box 2402, <br> 3001 Leuven, Belgium 
+</font></p>
+    </td>
+  </tr>
+</table>
+
+
+<!-- FOOTER -->
+
+</BODY></HTML><!-- Localized -->
