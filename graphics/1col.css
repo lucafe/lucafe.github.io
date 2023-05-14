@@ -108,6 +108,27 @@ a:focus {
 	margin-left: 25px; height: 90px; background-repeat: repeat; background-color: rgb(255, 255, 255); color: #424242; margin-bottom:10px;
 }
 
+.header a {
+  float: center;
+  color: #FF6D37;
+  text-align: center;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  font-variant: small-caps;
+  <!font-family: Verdana, sans-serif;>
+}
+
+
+.header a:hover {
+  background-color: #FF6D37;
+  color:  #282828;
+}
+
+.header a.active {
+  background-color:  #FF6D37;
+  color: #282828;
+}
 
 .topnav a {
   float: center;
