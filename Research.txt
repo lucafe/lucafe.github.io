@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucaFe - Research</title>
+    <link rel="shortcut icon" type="image/png" href="graphics/LFicon.png">
+    <link rel="stylesheet" href="graphics/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header id="header-placeholder"></header>
+
+        <div class="subtopnav">
+            <a href="#Research">RESEARCH INTERESTS</a>
+            <a href="#PhD">PHD</a>
+            <a href="#Publications">PUBLICATIONS</a>
+            <a href="#Conferences">CONFERENCES</a>
+        </div>
+
+        <main>
+            <section id="Research">
+                <h2>Research Interests</h2>
+                <p>My research interests focus on pure and applied mathematics, and include:</p>
+                <ul class="styled-list">
+                    <li>Science communication and Effective Graphical Display.</li>
+                    <li>Data Science.</li>
+                    <li>Mathematical Modeling, Simulation and Computation.</li>
+                    <li>Uncertainty Quantification, Statistics, and Probability.</li>
+                    <li>Optimization, Control Theory, and Machine Learning.</li>
+                    <li>Approximation Theory, Integration Methods and Model Order Reduction.</li>
+                </ul>
+            </section>
+
+            <hr style="margin: 2rem 0; opacity: 0.3;">
+
+            <section id="PhD">
+                <h2>PhD in Engineering Science</h2>
+                <p>
+                    Department of Computer Science, <a href="https://wms.cs.kuleuven.be/groups/NUMA">NUMA research unit</a><br>
+                    <a href="https://www.kuleuven.be/english/">KU Leuven</a>, Leuven (Belgium) - February 2020
+                </p>
+
+                <dl>
+                    <dt>Title</dt>
+                    <dd><b>Looking for stability:</b> Advances on spectrum-based stability and stabilization of uncertain time delay system</dd>
+
+                    <dt>Author</dt>
+                    <dd>Luca Fenzi</dd>
+
+                    <dt>Supervisor</dt>
+                    <dd>Prof. Dr. Ir. <a href="https://people.cs.kuleuven.be/~wim.michiels/">Wim Michiels</a></dd>
+                    
+                    <dt>Material</dt>
+                    <dd>
+                        <a href="PhD_thesis/PhD_Fenzi_Looking_for_stability.pdf"><i class="fa fa-file-pdf-o"></i> Thesis (PDF)</a> | 
+                        <a href="PhD_thesis/Poster.pdf"><i class="fa fa-picture-o"></i> Poster</a>
+                    </dd>
+                    
+                    <dt>Presentation</dt>
+                    <dd>
+                        <video width="100%" style="max-width: 480px;" controls preload> 
+                            <source src="PhD_thesis/Presentation.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </dd>
+                </dl>
+            </section>
+
+            <hr style="margin: 2rem 0; opacity: 0.3;">
+
+            <section id="Publications">
+                <h2>Publications</h2>
+                <ol>
+                    <li style="margin-bottom: 1rem;">
+                        L. Fenzi and W. Michiels<br>
+                        <b><a href="http://www.sciencedirect.com/science/article/pii/S0024379517301829">Robust stability optimization for delay systems in a probabilistic framework</a></b><br>
+                        <i>Linear Algebra and its Applications</i>, <b>526</b>, 1-26 (2017).
+                    </li>
+                    </ol>
+            </section>
+        </main>
+    </div>
+
+    <footer id="footer-placeholder"></footer>
+    <script src="js/loader.js"></script>
+</body>
+</html>

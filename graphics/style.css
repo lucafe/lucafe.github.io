@@ -1,0 +1,231 @@
+/* graphics/style.css */
+:root {
+    --primary: #CF5C36;    /* Ruggine - CTA */
+    --secondary: #F2AF29;  /* Giallo Ocra - Dettagli */
+    --text: #474747;       /* Grigio Scuro - Testo */
+    --bg: #E0E0CE;         /* Beige - Sfondo */
+    --contrast: #000000;   /* Nero - Titoli */
+    --white: #ffffff;
+    --font-heading: 'Merriweather', serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Forza il footer in basso */
+    line-height: 1.6;
+}
+
+/* Layout Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    flex: 1; /* Espande il contenuto per spingere giù il footer */
+}
+
+/* Typography */
+h1, h2, h3 { color: var(--contrast); font-family: var(--font-heading); }
+h1 { color: var(--primary); }
+a { color: var(--primary); text-decoration: none; transition: 0.3s; }
+a:hover { color: var(--secondary); }
+
+/* Header & Nav */
+header {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--bg);
+    margin-bottom: 2rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-info h1 { margin: 0; font-size: 2.5rem; }
+.profile-info p { margin: 0; font-size: 0.9rem; font-style: italic; color: var(--text); }
+
+.lang-switch a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+.lang-switch a.active { background: var(--primary); color: var(--white); }
+
+/* Navigation Bar */
+nav.topnav {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+nav.topnav a {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--text);
+    border-bottom: 3px solid transparent;
+}
+
+nav.topnav a:hover, nav.topnav a.active {
+    border-bottom-color: var(--primary);
+    color: var(--contrast);
+}
+
+/* Sub-Navigation (per le pagine interne) */
+.subtopnav {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+.subtopnav a { margin: 0 10px; font-size: 0.9rem; color: var(--text); }
+
+/* Content Elements */
+ul.styled-list { list-style: none; padding: 0; }
+ul.styled-list li { margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem; }
+ul.styled-list li::before {
+    content: "\25AA"; /* Quadratino */
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+dl { display: grid; grid-template-columns: 120px 1fr; gap: 10px; margin-top: 20px;}
+dt { font-weight: bold; color: var(--contrast); }
+dd { margin: 0; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+
+/* Footer */
+footer {
+    background: var(--text);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+footer a { color: var(--secondary); }
+footer .social-icons { font-size: 1.5rem; margin-top: 10px; }
+footer .social-icons a { margin: 0 10px; }
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+    .header-content { flex-direction: column; text-align: center; }
+    dl { grid-template-columns: 1fr; }
+    dt { color: var(--primary); margin-top: 10px;}
+    dd { border-bottom: none; }
+}
+
+/* Card Design */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crea colonne automatiche */
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.card {
+    background: var(--white);
+    border-left: 5px solid var(--primary); /* Linea color Ruggine a sinistra */
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Si alza leggermente al passaggio del mouse */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h3 { margin-top: 0; font-size: 1.2rem; color: var(--primary); }
+.card p { font-size: 0.95rem; margin-bottom: 1rem; }
+
+/* --- Liste in ordine invertito --- */
+/* Stile per liste numerate inverse (o standard) */
+ol.custom-list {
+    padding-left: 20px; /* Spazio per i numeri */
+    color: var(--text);
+}
+
+ol.custom-list li {
+    margin-bottom: 1rem; /* Spazio tra le voci */
+    padding-left: 10px;
+}
+
+/* Colora solo i numeri */
+ol.custom-list li::marker {
+    color: var(--primary); /* Il tuo color Ruggine */
+    font-weight: bold;
+    font-family: var(--font-heading); /* Usa il font dei titoli per i numeri */
+    font-size: 1.1rem;
+}
+
+/* --- STILE DEI BOTTONI --- */
+
+/* Stile Base per tutti i bottoni */
+.btn {
+    display: inline-block;      /* Fa comportare il link come un blocco rettangolare */
+    padding: 12px 25px;         /* Spaziatura interna: 12px sopra/sotto, 25px lati */
+    font-family: var(--font-main);
+    font-weight: 700;           /* Grassetto */
+    text-transform: uppercase;  /* Tutto maiuscolo per autorevolezza */
+    text-decoration: none;      /* Toglie la sottolineatura classica dei link */
+    border-radius: 50px;        /* Bordi molto arrotondati (Pill shape) */
+    transition: all 0.3s ease;  /* Animazione fluida al passaggio del mouse */
+    cursor: pointer;
+    font-size: 0.9rem;
+    border: 2px solid var(--primary); /* Bordo color ruggine */
+    margin: 5px;                /* Un po' di spazio attorno */
+}
+
+/* 1. Bottone PRIMARIO (Sfondo pieno) */
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #b04623;  /* Ruggine più scuro al passaggio del mouse */
+    border-color: #b04623;
+    transform: translateY(-3px); /* Si alza leggermente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombra sotto */
+    color: var(--white);
+}
+
+/* 2. Bottone SECONDARIO (Sfondo trasparente / Outline) */
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary); /* Diventa pieno al passaggio */
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Variante Piccola (per le liste o le card) */
+.btn-small {
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    border-width: 1px;
+}

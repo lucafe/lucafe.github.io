@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucaFe - Software</title>
+    
+    <link rel="shortcut icon" type="image/png" href="graphics/LFicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="graphics/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header id="header-placeholder"></header>
+
+        <main>
+            <section>
+                <h2>Software & Code</h2>
+                <p>A collection of MATLAB suites and numerical codes developed during my PhD research.</p>
+            </section>
+
+            <div class="card-grid">
+                
+				<!-- Stability and Stabilization of Periodic Time-Delay Systems -->
+                <article class="card">
+                    <h3>Stability and Stabilization of Periodic Time-Delay Systems</h3>
+                    <p>The software deals with spectrum-based stability assessment and stabilization methods for periodic linear time-delay systems, where the delays and the period of the system matrices are commensurate. 
+					The software relies on the dual interpretation of the Floquet multipliers, which can be characterized as non-zero eigenvalues either of  the monodromy operator
+					or of a finite-dimensional nonlinear eigenvalue problem, whose solution is obtained by solving an initial value problem.</p>
+
+					<p> The stabilization method requires the usage of the software 
+					<A HREF="http://www.cs.nyu.edu/overton/software/hanso/"> HANSO (Hybrid Algorithm for Non Smooth Optimization)</A>. 
+					</p>
+                    <div style="margin-top: auto;">
+                        <a HREF="software/StabilityStabilizationPTDS.zip" class="btn btn-primary btn-small" target="_blank">
+                            <i class="fa fa-download"></i> Download the MATLAB package
+                        </a>
+                    </div>
+					
+					<p style="margin-top: 0;"><b>Reference:</b>
+					W. Michiels and L. Fenzi <br><b><A HREF="https://doi.org/10.1137/19M1275851"> Spectrum-based Stability Analysis and Stabilization of Time-periodic Time-delay Systems</A> </b>
+					SIAM Journal on Matrix Analysis and Applications <b>41</b>(3), 1284-1311 (2020).</p>
+				</article>
+
+				<!-- Polynomial (chaos) approximation of maximum eigenvalue functions  -->
+                <article class="card">
+                    <h3>Polynomial (chaos) approximation of maximum eigenvalue functions </h3>
+                      
+						<p>	The tutorial explores the polynomial approximation of smooth, non-differentiable and non-Lipschitz continuous functions in the univariate and bivariate cases. The analyzed functions arise from parameter 
+						eigenvalue problems; in particular, they are the real part of the rightmost eigenvalue (the so-called spectral abscissa).</p>
+						
+                    <div style="margin-top: auto;">
+                        <A HREF="software/PCA_SA_Tutorial.pdf" class="btn btn-outline btn-small">
+                            <i class="fa fa-download"></i> Download the tutorial
+                        </a>
+                    </div>
+					<p>The tutorial is also available at <A HREF="http://www.cs.kuleuven.be/publicaties/rapporten/tw/TW688.abs.html"> TW internal reports</A> KU Leuven.<br></p>
+					
+					<div style="margin-top: auto;">
+                        <A HREF="software/PCA_SA_Tutorial.pdf" class="btn btn-primary btn-small" target="_blank">
+                            <i class="fa fa-download"></i> Download the MATLAB script
+                        </a>
+                    </div>
+					<p>The script generates the LaTeX tutorial by Matlab code <A HREF="https://nl.mathworks.com/help/matlab/ref/publish.html"> publish</A>. </p>
+					
+					<p style="margin-top: 0;"><b>Reference:</b>
+					L. Fenzi and W. Michiels	
+   <b><A HREF="https://doi.org/10.1007/s11075-018-00648-9"> 
+	Polynomial (chaos) approximation of maximum eigenvalue functions: efficiency and limitations</A></b>
+	Numerical Algorithms <b>82</b>, 1143-1169 (2019).</p>
+					
+                </article>
+
+
+				<!-- Robust Stability Optimization in Probabilistic Framework -->
+                <article class="card">
+                    <h3>Stability optimization of uncertain time-delay systems</h3>
+                    <p>This eigenvalue-based stabilization method tunes the controller parameters (static or dynamic feedbacks) 
+					in order to improve the stability properties of a time-delay system, which can be affected by uncertainties, 
+					modeled by the realizations of a random vector. The closed-loop system is described by a delay differential algebraic equations (DDAE) of retarded type, 
+					in this way we can take into account integral controller and distributed terms. The time-delay system may non-linearly depend on the controller and uncertain parameters. </p>
+
+<p>   The minimization of the objective function relies on the software 
+<A HREF="http://www.cs.nyu.edu/overton/software/hanso/"> HANSO (Hybrid Algorithm for Non Smooth Optimization)</A>.     
+</p>
+                    
+					
+					<div style="margin-top: auto;">
+                        <a HREF="software/UDDAE_Optimization.zip" class="btn btn-primary btn-small" target="_blank">
+                            <i class="fa fa-download"></i> Download the MATLAB package
+                        </a>
+                    </div>
+					
+					<p style="margin-top: 0;"><b>Reference:</b>
+					L. Fenzi and W. Michiels <b><A HREF="http://www.sciencedirect.com/science/article/pii/S0024379517301829"> Robust stability optimization for delay systems in a probabilistic framework</A></b>
+                    <i>Linear Algebra and its Applications</i>, <b>526</b>, 1-26 (2017).</p>
+					
+					
+					
+                </article>
+
+               
+            </div>
+
+            <hr style="margin: 3rem 0; opacity: 0.3;">
+            
+            <section style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; font-size: 0.9em;">
+                <p>All scientific publications, for which the softwares have been used, must mention must refer to the corresponding publication. The softwares are released under the <A HREF="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3.0 license.</A>	
+				</p>
+				
+				
+				<p style="margin-top: 0;"><b>Funding Acknowledgments:</b></p>
+                <p>The research leading to these results has received funding from:</p>
+                <ul class="styled-list">
+                    <li>The project <b>C14/17/072</b> of the KU Leuven Research Council.</li>
+                    <li>The project <b>G0A5317N</b> of the Research Foundation-Flanders (FWO - Vlaanderen).</li>
+                    <li>The project <b>UCoCoS</b>, funded by the European Union’s Horizon 2020 research and innovation program under the Marie Sklodowska-Curie Grant Agreement No <b>675080</b>.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script src="js/loader.js"></script>
+</body>
+</html>
