@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Parallelogramma Interattivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <header class="bg-indigo-600 text-white p-6 shadow-md">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold">Analisi Geometrica del Parallelogramma</h1>
+            <p class="text-indigo-100 mt-1">Studio delle funzioni Area A(α) e Diagonale Maggiore D(α) con lati di 10 cm e 5 cm</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full grow">
+        
+        <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-semibold mb-4 text-indigo-950 flex items-center gap-2">
+                    <span>🎛️</span> Modifica Angolo α
+                </h2>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-slate-500">Gradi (deg)</span>
+                    <span id="angle-display" class="text-2xl font-bold text-indigo-600">45°</span>
+                </div>
+                <input type="range" id="angle-slider" min="1" max="179" value="45" 
+                       class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                    <span>1° (Limite Inf)</span>
+                    <span>90° (Rettangolo)</span>
+                    <span>179° (Limite Sup)</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-2 gap-4">
+                <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                    <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wider">Area Corrente</p>
+                    <p id="val-area" class="text-2xl font-bold text-slate-900 mt-1">0.00 cm²</p>
+                </div>
+                <div class="p-4 bg-rose-50 rounded-xl border border-rose-100">
+                    <p class="text-xs font-semibold text-rose-700 uppercase tracking-wider">Diag. Maggiore</p>
+                    <p id="val-diag" class="text-2xl font-bold text-slate-900 mt-1">0.00 cm</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-sm space-y-3">
+                <h3 class="font-bold text-slate-900 text-base">ℹ️ Risposte ai quesiti del problema:</h3>
+                <p>• <b>Massimo dell'Area:</b> Si ottiene a <b>α = 90°</b> con un valore di <b>50 cm²</b>.</p>
+                <p>• <b>Minimo Diagonale Maggiore:</b> Si ottiene anch'esso a <b>α = 90°</b> con una lunghezza di <b>5√5 ≈ 11.18 cm</b>.</p>
+                <p>• <b>Domini:</b> α ∈ (0°, 180°)</p>
+                <p>• <b>Codomini:</b> Area ∈ (0, 50] | Diagonale ∈ [11.18, 15)</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7 flex flex-col gap-6">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center">
+                <h2 class="text-lg font-semibold mb-4 text-slate-900 self-start">📐 Rappresentazione Parallelogramma</h2>
+                <div class="w-full flex justify-center bg-slate-900/5 rounded-xl p-4">
+                    <canvas id="geo-canvas" width="450" height="220" class="max-w-full"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-lg font-semibold mb-2 text-slate-900">📈 Grafico delle Funzioni A(α) e D(α)</h2>
+                <div class="relative w-full h-64">
+                    <canvas id="chart-canvas"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-center py-4 text-xs border-t border-slate-800">
+        Applicazione Didattica Interattiva • Sviluppata in HTML5 / Canvas / Chart.js
+    </footer>
+
+    <script>
+        // Elementi DOM
+        const slider = document.getElementById('angle-slider');
+        const angleDisplay = document.getElementById('angle-display');
+        const valArea = document.getElementById('val-area');
+        const valDiag = document.getElementById('val-diag');
+        const geoCanvas = document.getElementById('geo-canvas');
+        const ctxGeo = geoCanvas.getContext('2d');
+
+        // Parametri geometrici fissi scalati per il disegno (1 cm = 22 pixel)
+        const SCALE = 22;
+        const sideA = 10 * SCALE; // 220 px
+        const sideB = 5 * SCALE;  // 110 px
+
+        // Generazione dati per i grafici (da 1 a 179 gradi)
+        const anglesLabels = [];
+        const areaData = [];
+        const diagData = [];
+
+        for (let i = 0; i <= 180; i += 2) {
+            anglesLabels.push(i);
+            const rad = (i * Math.PI) / 180;
+            // Funzioni matematiche dell'esercizio
+            areaData.push(50 * Math.sin(rad));
+            diagData.push(Math.sqrt(125 + 100 * Math.abs(Math.cos(rad))));
+        }
+
+        // Inizializzazione grafico Chart.js (Doppio asse Y per gestire scale diverse)
+        const ctxChart = document.getElementById('chart-canvas').getContext('2d');
+        const myChart = new Chart(ctxChart, {
+            type: 'line',
+            data: {
+                labels: anglesLabels,
+                datasets: [
+                    {
+                        label: 'Area A(α) [cm²]',
+                        data: areaData,
+                        borderColor: '#4f46e5',
+                        borderWidth: 2.5,
+                        pointRadius: 0,
+                        yAxisID: 'yArea',
+                    },
+                    {
+                        label: 'Diag. Maggiore D(α) [cm]',
+                        data: diagData,
+                        borderColor: '#f43f5e',
+                        borderWidth: 2.5,
+                        pointRadius: 0,
+                        yAxisID: 'yDiag',
+                    },
+                    {
+                        label: 'Punto Corrente Area',
+                        data: [],
+                        pointBackgroundColor: '#4f46e5',
+                        pointBorderColor: '#fff',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        showLine: false,
+                        yAxisID: 'yArea',
+                    },
+                    {
+                        label: 'Punto Corrente Diag.',
+                        data: [],
+                        pointBackgroundColor: '#f43f5e',
+                        pointBorderColor: '#fff',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        showLine: false,
+                        yAxisID: 'yDiag',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Angolo α (gradi)', color: '#64748b' }
+                    },
+                    yArea: {
+                        type: 'linear',
+                        position: 'left',
+                        min: 0,
+                        max: 55,
+                        title: { display: true, text: 'Area (cm²)', color: '#4f46e5' }
+                    },
+                    yDiag: {
+                        type: 'linear',
+                        position: 'right',
+                        min: 10,
+                        max: 16,
+                        grid: { drawOnChartArea: false }, // evita sovrapposizione linee griglia
+                        title: { display: true, text: 'Diagonale (cm)', color: '#f43f5e' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            filter: function(item) {
+                                // Nasconde i marker puntiformi dalla legenda per pulizia grafico
+                                return !item.text.includes('Punto Corrente');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Funzione di disegno del parallelogramma su Canvas
+        function drawParallelogram(angleDeg) {
+            const rad = (angleDeg * Math.PI) / 180;
+            ctxGeo.clearRect(0, 0, geoCanvas.width, geoCanvas.height);
+
+            // Centratura dinamica nel Canvas
+            const offsetX = (geoCanvas.width - (sideA + Math.abs(sideB * Math.cos(rad)))) / 2 + (angleDeg > 90 ? Math.abs(sideB * Math.cos(rad)) : 0);
+            const offsetY = 170; 
+
+            // Coordinate dei 4 vertici
+            const x1 = offsetX;
+            const y1 = offsetY;
+
+            const x2 = offsetX + sideA;
+            const y2 = offsetY;
+
+            const x4 = offsetX + sideB * Math.cos(rad);
+            const y4 = offsetY - sideB * Math.sin(rad);
+
+            const x3 = x4 + sideA;
+            const y3 = y4;
+
+            // Disegno dell'Area di riempimento
+            ctxGeo.fillStyle = 'rgba(79, 70, 229, 0.08)';
+            ctxGeo.beginPath();
+            ctxGeo.moveTo(x1, y1);
+            ctxGeo.lineTo(x2, y2);
+            ctxGeo.lineTo(x3, y3);
+            ctxGeo.lineTo(x4, y4);
+            ctxGeo.closePath();
+            ctxGeo.fill();
+
+            // Disegno dei lati esterni
+            ctxGeo.strokeStyle = '#334155';
+            ctxGeo.lineWidth = 3;
+            ctxGeo.stroke();
+
+            // Calcolo e disegno della diagonale MAGGIORE
+            ctxGeo.lineWidth = 2.5;
+            ctxGeo.setLineDash([4, 4]); // Linea tratteggiata per le diagonali
+            
+            // Se l'angolo è acuto (<90), la diag maggiore unisce l'origine acuta all'angolo opposto (x1,y1 a x3,y3)
+            // Se è ottuso (>90), unisce (x2,y2 a x4,y4)
+            if (angleDeg <= 90) {
+                ctxGeo.strokeStyle = '#f43f5e'; // Colore diagonale maggiore
+                ctxGeo.beginPath(); ctxGeo.moveTo(x1, y1); ctxGeo.lineTo(x3, y3); ctxGeo.stroke();
+                
+                ctxGeo.strokeStyle = '#cbd5e1'; // Diagonale minore (grigia di sfondo)
+                ctxGeo.beginPath(); ctxGeo.moveTo(x2, y2); ctxGeo.lineTo(x4, y4); ctxGeo.stroke();
+            } else {
+                ctxGeo.strokeStyle = '#cbd5e1'; 
+                ctxGeo.beginPath(); ctxGeo.moveTo(x1, y1); ctxGeo.lineTo(x3, y3); ctxGeo.stroke();
+
+                ctxGeo.strokeStyle = '#f43f5e'; 
+                ctxGeo.beginPath(); ctxGeo.moveTo(x2, y2); ctxGeo.lineTo(x4, y4); ctxGeo.stroke();
+            }
+            ctxGeo.setLineDash([]); // Ripristina linea continua
+
+            // Disegno dell'arco dell'angolo α
+            ctxGeo.strokeStyle = '#4f46e5';
+            ctxGeo.lineWidth = 2;
+            ctxGeo.beginPath();
+            ctxGeo.arc(x1, y1, 25, 0, -rad, angleDeg > 90 ? true : true);
+            ctxGeo.stroke();
+
+            // Testo etichetta Angolo α
+            ctxGeo.fillStyle = '#4f46e5';
+            ctxGeo.font = 'bold 13px sans-serif';
+            ctxGeo.fillText("α", x1 + 30, y1 - 10);
+        }
+
+        // Funzione di aggiornamento globale dell'interfaccia
+        function updateApp() {
+            const angle = parseInt(slider.value);
+            const rad = (angle * Math.PI) / 180;
+
+            // 1. Aggiorna i testi a schermo
+            angleDisplay.innerText = angle + "°";
+            
+            const currentArea = 50 * Math.sin(rad);
+            const currentDiag = Math.sqrt(125 + 100 * Math.abs(Math.cos(rad)));
+
+            valArea.innerText = currentArea.toFixed(2) + " cm²";
+            valDiag.innerText = currentDiag.toFixed(2) + " cm";
+
+            // 2. Aggiorna il disegno del parallelogramma
+            drawParallelogram(angle);
+
+            // 3. Sposta i punti indicatori sul grafico di Chart.js
+            myChart.data.datasets[2].data = [{ x: angle, y: currentArea }];
+            myChart.data.datasets[3].data = [{ x: angle, y: currentDiag }];
+            myChart.update('none'); // Aggiornamento senza animazioni pesanti per fluidità
+        }
+
+        // Event Listener sul movimento del cursore slider
+        slider.addEventListener('input', updateApp);
+
+        // Primo avvio dell'applicazione
+        updateApp();
+    </script>
+</body>
+</html>
